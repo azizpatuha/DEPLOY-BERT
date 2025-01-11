@@ -1,0 +1,15 @@
+numpy==1.26.3
+streamlit==1.36.0
+tensorflow
+transformers==4.47.0
+tensorflow-cpu==2.16.1
+tf-keras==2.16.0
+streamlit_authenticator==0.2.2
+streamlit_option_menu==0.3.6
+google-cloud-firestore
+PySastrawi==1.2.0
+nltk
+matplotlib
+seaborn
+skcit-learn
+wordcloud
