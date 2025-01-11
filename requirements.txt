@@ -1,6 +1,6 @@
 numpy==1.26.3
 streamlit==1.36.0
-tensorflow==2.18.0
+tensorflow
 transformers==4.47.0
 tensorflow-cpu==2.16.1
 tf-keras==2.16.0
