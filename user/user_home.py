@@ -24,7 +24,7 @@ def user_home():
         test_sample = tokenizer([user_input], padding=True, truncation=True, max_length=512, return_tensors='tf')
         
         output = model(**test_sample)
-        st.write("Logits: ", output.logits)
+        # st.write("Logits: ", output.logits)
         
         y_pred = np.argmax(output.logits.numpy(), axis=1)  # .numpy() untuk mengambil nilai array
         st.write("Prediction: ", d[y_pred[0]])
