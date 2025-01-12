@@ -87,25 +87,35 @@ def admin_upload_yt():
         # data.head()   
 
         #text processing
-        data["text_preprocessing"] = data["content"].apply(text_preprocessing)
-        data["text_preprocessing"]
+        with st.expander("1. Text Preprocessing"):  # Gunakan expander untuk tampilan yang rapi
+            data["text_preprocessing"] = data["content"].apply(text_preprocessing)
+            st.write("Data setelah text_preprocessing:")
+            st.dataframe(data[['content', 'text_preprocessing']].head())
+        
 
         #Stemming
-        data["stemmer"] = data["text_preprocessing"].apply(stemmer.stem)
-        data["stemmer"]
+        with st.expander("2. Stemming"):
+            data["stemmer"] = data["text_preprocessing"].apply(stemmer.stem)
+            st.write("Data setelah stemming:")
+            st.dataframe(data[['text_preprocessing', 'stemmer']].head())
 
         #Slang
-        data["slang"] = data["stemmer"].apply(convert_slangword)
-        data["slang"]
+        with st.expander("3. Slang"):
+            data["slang"] = data["stemmer"].apply(convert_slangword)
+            st.write("Data setelah slang:")
+            st.dataframe(data[['stemmer', 'slang']].head())
 
         #Stopword
-        data["stopword_text"] = data["slang"].apply(remove_stopwords)
-        data["stopword_text"]
+        with st.expander("4. Stopword"):
+            data["stopword_text"] = data["slang"].apply(remove_stopwords)
+            st.write("Data setelah stopword:")
+            st.dataframe(data[['slang', 'stopword_text']].head())
 
         #hapus kata dibawah 3 huruf
-        data["text_clean"] = data["stopword_text"].str.findall('\w{3,}').str.join(' ')
-        data["text_clean"]
-
+        with st.expander("5. Hapus Kata < 3 Huruf"):
+            data["text_clean"] = data["stopword_text"].str.findall('\w{3,}').str.join(' ')
+            st.write("Data setelah menghapus kata dibawah 3 huruf:")
+            st.dataframe(data[['stopword_text', 'text_clean']].head())
         #menampilkan data yang sudah dibersihkan
         data.head()
 
