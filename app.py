@@ -141,7 +141,7 @@ def app():
                 admin_upload_yt()
             
         elif level == "user":
-            menu = ["Sentiment Predictor", " Account Management", "Sentimen Upload Google Play Store", "Sentimen Upload Youtube"]
+            menu = ["Sentiment Predictor", "Account Management", "Sentimen Upload Google Play Store", "Sentimen Upload Youtube"]
             selected = st.sidebar.selectbox("Navigasi", menu)
             authenticator.logout("logout", "sidebar")
             if selected == "Sentiment Predictor":
