@@ -135,7 +135,7 @@ def admin_upload_yt():
         data = data.dropna (subset=['text_preprocessing'])
         data = data.dropna (subset=['stemmer'])
         data = data.dropna (subset=['slang'])
-        data = data.dropna (subset=['stopword_text'])
+        # data = data.dropna (subset=['stopword_text'])
         data = data.dropna (subset=['comment'])
 
         data.info()
