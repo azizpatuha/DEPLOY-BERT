@@ -112,16 +112,16 @@ def user_upload_yt():
             st.dataframe(data[['slang', 'stopword_text']].head())
 
         #hapus kata dibawah 3 huruf
-        #with st.expander("5. Hapus Kata < 3 Huruf"):
-            #data["text_clean"] = data["stopword_text"].str.findall('\w{3,}').str.join(' ')
-            #st.write("Data setelah menghapus kata dibawah 3 huruf:")
-            #st.dataframe(data[['stopword_text', 'text_clean']].head())
+        with st.expander("5. Hapus Kata < 3 Huruf"):
+            data["text_clean"] = data["stopword_text"].str.findall('\w{3,}').str.join(' ')
+            st.write("Data setelah menghapus kata dibawah 3 huruf:")
+            st.dataframe(data[['stopword_text', 'text_clean']].head())
 
         #menampilkan data yang sudah dibersihkan
         data.head()
 
         # merubah nama kolom
-        data = data.rename (columns={'stopword_text': 'comment'})
+        data = data.rename (columns={'text_clean': 'comment'})
         data.head()
 
         # # 0 = positif, 1 = negatif
@@ -136,7 +136,7 @@ def user_upload_yt():
         data = data.dropna (subset=['text_preprocessing'])
         data = data.dropna (subset=['stemmer'])
         data = data.dropna (subset=['slang'])
-        # data = data.dropna (subset=['stopword_text'])
+        data = data.dropna (subset=['stopword_text'])
         data = data.dropna (subset=['comment'])
 
         data.info()
