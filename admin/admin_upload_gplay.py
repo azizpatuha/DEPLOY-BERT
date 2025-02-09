@@ -56,6 +56,9 @@ def admin_upload_gplay():
     nltk.download('stopwords')
     indonesian_stopwords = stopwords.words('indonesian')
 
+    # **Hapus "tidak" dari daftar stopword**
+    indonesian_stopwords.remove('tidak')
+
     # Cache stopwords list outside the function to avoid reloading every time
     cached_stopwords = indonesian_stopwords
 
@@ -111,17 +114,11 @@ def admin_upload_gplay():
             st.write("Data setelah stopword:")
             st.dataframe(data[['slang', 'stopword_text']].head())
 
-        #hapus kata dibawah 3 huruf
-        with st.expander("5. Hapus Kata < 3 Huruf"):
-            data["text_clean"] = data["stopword_text"].str.findall('\w{3,}').str.join(' ')
-            st.write("Data setelah menghapus kata dibawah 3 huruf:")
-            st.dataframe(data[['stopword_text', 'text_clean']].head())
-
         #menampilkan data yang sudah dibersihkan
         data.head()
 
         # merubah nama kolom
-        data = data.rename (columns={'text_clean': 'comment'})
+        data = data.rename (columns={'stopword_text': 'comment'})
         data.head()
 
         # # 0 = positif, 1 = negatif
@@ -136,7 +133,6 @@ def admin_upload_gplay():
         data = data.dropna (subset=['text_preprocessing'])
         data = data.dropna (subset=['stemmer'])
         data = data.dropna (subset=['slang'])
-        data = data.dropna (subset=['stopword_text'])
         data = data.dropna (subset=['comment'])
 
         data.info()
@@ -146,7 +142,6 @@ def admin_upload_gplay():
         data.drop('text_preprocessing', axis=1, inplace=True)
         data.drop('stemmer', axis=1, inplace=True)
         data.drop('slang', axis=1, inplace=True)
-        data.drop('stopword_text', axis=1, inplace=True)
 
         data.head()
 
