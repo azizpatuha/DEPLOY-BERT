@@ -7,7 +7,7 @@ def user_home():
     # @st.cache(allow_output_mutation=True)
     def get_model():
         tokenizer = BertTokenizer.from_pretrained('indobenchmark/indobert-base-p2')
-        model = TFBertForSequenceClassification.from_pretrained("azizpatuha/BERT")
+        model = TFBertForSequenceClassification.from_pretrained("azizpatuha/bert_yt")
         return tokenizer, model
 
     tokenizer, model = get_model()
