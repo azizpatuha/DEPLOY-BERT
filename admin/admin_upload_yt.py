@@ -72,9 +72,7 @@ def admin_upload_yt():
     def preprocess_data(data):
         #menghapus kolom yang tidak digunakan
         columns_to_drop = [
-                        'reviewId', 'userName', 'userImage', 'score', 
-                        'thumbsUpCount', 'reviewCreatedVersion', 'at', 
-                        'replyContent', 'repliedAt', 'appVersion'
+                        'publishedAt', 'authorDisplayName', 'likeCount'
                     ]
         data.drop(columns=columns_to_drop, axis=1, inplace=True, errors='ignore')
 
