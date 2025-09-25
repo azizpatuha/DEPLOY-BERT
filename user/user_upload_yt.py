@@ -22,7 +22,7 @@ def user_upload_yt():
 
     #text processing
     def text_preprocessing(text):
-        # Ubah menjadi lower case
+    # Ubah menjadi lower case
         text = text.lower()
         # Hapus URL
         text = re.sub(r'http\S+', '', text)
@@ -56,8 +56,8 @@ def user_upload_yt():
     nltk.download('stopwords')
     indonesian_stopwords = stopwords.words('indonesian')
 
-    # **Hapus "tidak" dari daftar stopword**
-    indonesian_stopwords.remove('tidak')
+    # # **Hapus "tidak" dari daftar stopword**
+    # indonesian_stopwords.remove('tidak')
 
     # Cache stopwords list outside the function to avoid reloading every time
     cached_stopwords = indonesian_stopwords
@@ -118,7 +118,7 @@ def user_upload_yt():
         data.head()
 
         # merubah nama kolom
-        data = data.rename (columns={'text_clean': 'comment'})
+        data = data.rename (columns={'stopword_text': 'comment'})
         data.head()
 
         # # 0 = positif, 1 = negatif
@@ -133,9 +133,10 @@ def user_upload_yt():
         data = data.dropna (subset=['text_preprocessing'])
         data = data.dropna (subset=['stemmer'])
         data = data.dropna (subset=['slang'])
+        data = data.dropna (subset=['stopword_text'])
         data = data.dropna (subset=['comment'])
 
-        data.info()
+        # data.info()
 
         #menghapus kolom yang tidak digunakan setelah dilakukan text processing
         data.drop('content', axis=1, inplace=True)
