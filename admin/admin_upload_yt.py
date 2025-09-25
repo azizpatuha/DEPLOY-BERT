@@ -56,9 +56,6 @@ def admin_upload_yt():
     nltk.download('stopwords')
     indonesian_stopwords = stopwords.words('indonesian')
 
-    # **Hapus "tidak" dari daftar stopword**
-    indonesian_stopwords.remove('tidak')
-
     # Cache stopwords list outside the function to avoid reloading every time
     cached_stopwords = indonesian_stopwords
 
@@ -114,6 +111,9 @@ def admin_upload_yt():
             st.write("Data setelah stopword:")
             st.dataframe(data[['slang', 'stopword_text']].head())
 
+        #menampilkan data yang sudah dibersihkan
+        data.head()
+
         # merubah nama kolom
         data = data.rename (columns={'stopword_text': 'comment'})
         data.head()
@@ -125,12 +125,13 @@ def admin_upload_yt():
         # data.info()
 
         #menghapus/menambahkan komentar agar semua data isinya sama rata
-        data = data.dropna (subset=['content'])
-        # data = data.dropna (subset=['sentimen'])
-        data = data.dropna (subset=['text_preprocessing'])
-        data = data.dropna (subset=['stemmer'])
-        data = data.dropna (subset=['slang'])
-        data = data.dropna (subset=['comment'])
+        # data = data.dropna (subset=['content'])
+        # # data = data.dropna (subset=['sentimen'])
+        # data = data.dropna (subset=['text_preprocessing'])
+        # data = data.dropna (subset=['stemmer'])
+        # data = data.dropna (subset=['slang'])
+        # data = data.dropna (subset=['stopword_text'])
+        # data = data.dropna (subset=['comment'])
 
         data.info()
 
