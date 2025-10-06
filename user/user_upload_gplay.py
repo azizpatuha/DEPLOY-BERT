@@ -133,10 +133,9 @@ def user_upload_gplay():
         data = data.dropna (subset=['text_preprocessing'])
         data = data.dropna (subset=['stemmer'])
         data = data.dropna (subset=['slang'])
-        data = data.dropna (subset=['stopword_text'])
         data = data.dropna (subset=['comment'])
 
-        # data.info()
+        data.info()
 
         #menghapus kolom yang tidak digunakan setelah dilakukan text processing
         data.drop('content', axis=1, inplace=True)
